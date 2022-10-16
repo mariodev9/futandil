@@ -29,7 +29,7 @@ export default function Card({ name, img }) {
           perspective: 400,
           justifyContent: 'center',
         }}
-        onMouseMove={handleMouse}
+        // onMouseMove={handleMouse}
       >
         <motion.div
           style={{
@@ -38,8 +38,8 @@ export default function Card({ name, img }) {
             borderRadius: 30,
             backgroundColor: '#fff',
             border: '2px solid #A1A1A1',
-            rotateX: rotateX,
-            rotateY: rotateY,
+            // rotateX: rotateX,
+            // rotateY: rotateY,
             display: 'flex',
             padding: '10px',
           }}
