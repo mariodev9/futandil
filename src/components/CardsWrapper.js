@@ -23,7 +23,7 @@ export default function CardsWrapper() {
   return (
     <Flex align={'center'} justify="center" direction="column">
       {soccerFields.map(({ name, fieldTypes, icon, location }) => (
-        <Card name={name} img={icon} />
+        <Card name={name} img={icon} key={name} />
       ))}
     </Flex>
   );
