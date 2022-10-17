@@ -37,7 +37,7 @@ const soccerFields = [
     name: 'Calcetto II',
     fieldTypes: ['F5'],
     icon: calcettoImage,
-    location: 'Alsina 123',
+    location: 'Alsina 1198',
     wsp: '2494512201',
     pagelink: '',
   },
