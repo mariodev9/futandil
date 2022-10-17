@@ -1,7 +1,16 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, LinkBox, LinkOverlay } from '@chakra-ui/react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { FieldIcon, LocationIcon } from './Icons';
 
-export default function Card({ name, img }) {
+export default function Card({
+  name,
+  img,
+  fieldTypes,
+  location,
+  contact,
+  wsp,
+  pagelink,
+}) {
   const x = useMotionValue(300);
   const y = useMotionValue(100);
 
@@ -15,12 +24,14 @@ export default function Card({ name, img }) {
     y.set(event.clientY - rect.top);
   }
 
+  let url = wsp ? `https://wa.me/${wsp}` : pagelink;
+
   return (
     <>
       <motion.div
         style={{
-          width: 600,
-          height: 200,
+          width: 250,
+          height: 150,
           display: 'flex',
           placeItems: 'center',
           placeContent: 'center',
@@ -28,6 +39,8 @@ export default function Card({ name, img }) {
           //   backgroundColor: 'rgba(255, 255, 255, 0.05)',
           perspective: 400,
           justifyContent: 'center',
+          cursor: 'pointer',
+          margin: '20px 0px',
         }}
         // onMouseMove={handleMouse}
       >
@@ -37,21 +50,68 @@ export default function Card({ name, img }) {
             height: 150,
             borderRadius: 30,
             backgroundColor: '#fff',
-            border: '2px solid #A1A1A1',
+            border: '2px solid #284323',
             // rotateX: rotateX,
             // rotateY: rotateY,
-            display: 'flex',
             padding: '10px',
           }}
         >
-          <Flex w="35%" align="center" justify={'center'}>
-            <Image src={img} />
-          </Flex>
-          <Box w="65%">
-            <Text textAlign={'center'} fontWeight={'bold'}>
-              {name}
+          <LinkBox>
+            <Text
+              textAlign={'center'}
+              fontWeight={'bold'}
+              fontSize="20px"
+              color="#1E321B"
+            >
+              <LinkOverlay href={url} target="_blank">
+                {name}
+              </LinkOverlay>
             </Text>
-          </Box>
+            <Flex>
+              <Flex w="40%" align="center" justify={'center'} p="10px">
+                <Image src={img} borderRadius="10px" />
+              </Flex>
+              <Box w="60%">
+                <Flex mt="15px" align={'center'}>
+                  <Box w="30px">
+                    <FieldIcon />
+                  </Box>
+                  {/* comp */}
+
+                  <Flex align={'center'} ml="5px">
+                    {fieldTypes?.map(item => (
+                      <Flex align={'center'}>
+                        <Box
+                          w="8px"
+                          h="8px"
+                          borderRadius={'full'}
+                          bg="#1E321B"
+                          m="0px 3px"
+                        />
+                        <Text fontWeight={'medium'} color="#4F4F4F">
+                          {item}
+                        </Text>
+                      </Flex>
+                    ))}
+                  </Flex>
+                  {/*  */}
+                </Flex>
+                <Flex mt="5px" align={'center'}>
+                  <Box ml="4px" w="30px">
+                    <LocationIcon />
+                  </Box>
+                  <Text
+                    ml="5px"
+                    fontWeight={'medium'}
+                    fontSize="15px"
+                    color="#4F4F4F"
+                  >
+                    {location}
+                  </Text>
+                </Flex>
+              </Box>
+            </Flex>
+          </LinkBox>
         </motion.div>
       </motion.div>
     </>
